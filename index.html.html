@@ -1,0 +1,433 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dennis Oteng Mensah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- CLEAN MODERN COLOR THEME (NO NEON) / SMOOTH ANIMATIONS / MUSIC VISUALIZER -->
+  <style>
+    :root {
+      --primary: #1f3a5f;
+      --secondary: #34527a;
+      --accent: #5c8dbc;
+      --bg: #f3f4f7;
+      --text: #1a1a1a;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #eee;
+      --primary: #4d47d1;
+      --secondary: #ff5a94;
+      --accent: #3abfa8;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.4s ease;
+    }
+
+    /* NAVBAR */
+    header {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 18px 25px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    nav a {
+      color: white;
+      margin-left: 18px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      opacity: 0.75;
+    }
+
+    /* DARK MODE BUTTON */
+    .toggle {
+      background: var(--accent);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      color: black;
+    }
+    .toggle:hover {
+      opacity: 0.8;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 100px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      animation: fadeIn 1.3s ease;
+    }
+    .hero h2 {
+      margin: 0;
+      font-size: 42px;
+      font-weight: 800;
+    }
+
+    /* FLOATY DECORATIONS */
+    .floaty {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.4;
+      filter: blur(2px);
+      animation: float 6s infinite ease-in-out;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* PAGE SECTIONS */
+    .section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h2 {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--primary);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    /* MUSIC VISUALIZER BAR ANIMATION */
+    .music-visualizer {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .bar {
+      width: 6px;
+      height: 30px;
+      background: var(--secondary);
+      border-radius: 4px;
+      animation: bounce 1s ease infinite;
+    }
+    .bar:nth-child(2) { animation-delay: 0.2s; }
+    .bar:nth-child(3) { animation-delay: 0.4s; }
+    .bar:nth-child(4) { animation-delay: 0.6s; }
+    .bar:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes bounce {
+      0%, 100% { height: 20px; }
+      50% { height: 45px; }
+    }
+
+    /* SOCIAL ICONS */
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 15px;
+    }
+    .socials img {
+      width: 40px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .socials img:hover {
+      transform: scale(1.18);
+    }
+
+    footer {
+      background: var(--secondary);
+      padding: 25px;
+      text-align: center;
+      color: white;
+      margin-top: 60px;
+    }
+      /* SCROLL REVEAL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* INTERACTIVE BUTTON STYLE */
+    .toggle:hover {
+      transform: scale(1.06);
+    }
+
+    /* CARD HOVER DEPTH */
+    .card:hover {
+      transform: scale(1.04) translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+
+    /* NAV HOVER UNDERLINE */
+    nav a {
+      position: relative;
+    }
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* FLOATY CIRCLES MORE INTERACTIVE */
+    .floaty:hover {
+      transform: scale(1.4);
+      transition: 0.4s;
+    }
+  </style>
+</head>
+
+<body>
+<script>
+  function toggleMode() {
+    document.body.classList.toggle("dark");
+  }
+</script>
+
+<header>
+  <h1>Dennis O. Mensah</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#music">Music</a>
+    <a href="#bbsa">BBSA</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="toggle" onclick="toggleMode()">Dark Mode</div>
+</header>
+
+<!-- FLOATY DECORATIONS -->
+<div class="floaty" style="top:160px; left:12%;"></div>
+<div class="floaty" style="top:380px; left:78%; animation-delay:1s;"></div>
+<div class="floaty" style="top:620px; left:48%; animation-delay:2s;"></div>
+
+<section class="hero reveal">
+  <h2>Welcome to My World</h2>
+  <p>Energy • Creativity • Music • Aesthetics</p>
+</section>
+
+<!-- ABOUT -->
+<section class="section reveal" id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>
+      I'm <strong>Dennis Oteng Mensah</strong>, a YorkU LAPS student and Marketing Director of BBSA.
+      I'm passionate about branding, creativity, music, culture, and helping people present the best version of themselves.
+    </p>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section class="section reveal" id="hobbies">
+  <h2>Hobbies</h2>
+  <div class="card">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+      <div>
+        <img src="images/hobby-rap.jpg" style="width:100%; border-radius:12px; margin-bottom:10px;" alt="Rap Music">
+        <strong>Listening to rap & discovering new artists</strong>
+      </div>
+      <div>
+        <img src="images/hobby-content.jpg" style="width:100%; border-radius:12px; margin-bottom:10px;" alt="Content Creation">
+        <strong>Creating digital content</strong>
+      </div>
+      <div>
+        <img src="images/hobby-gym.jpg" style="width:100%; border-radius:12px; margin-bottom:10px;" alt="Gym">
+        <strong>Basketball / Gym</strong>
+      </div>
+      <div>
+        <img src="images/hobby-fashion.jpg" style="width:100%; border-radius:12px; margin-bottom:10px;" alt="Fashion">
+        <strong>Fashion + styling outfits</strong>
+      </div>
+      <div>
+        <img src="images/hobby-friends.jpg" style="width:100%; border-radius:12px; margin-bottom:10px;" alt="Friends">
+        <strong>Chilling with good people</strong>
+      </div>
+      <div>
+        <img src="images/hobby-toronto.jpg" style="width:100%; border-radius:12px; margin-bottom:10px;" alt="Toronto">
+        <strong>Exploring Toronto</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC SECTION WITH ANIMATED VISUALIZER -->
+<section class="section reveal" id="music">
+  <h2>My Music Taste 🎧</h2>
+  <div class="card">
+    <p>
+      Rap runs my world.
+      Nicki Minaj and Drake stay on repeat — no explanation needed.
+    </p>
+
+    <!-- Spotify Player -->
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd" width="100%" height="152" frameBorder="0"></iframe>
+
+    <!-- MUSIC VISUALIZER -->
+    <div class="music-visualizer">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BBSA -->
+<section class="section reveal" id="bbsa">
+  <h2>YorkU BBSA</h2>
+  <div class="card">
+    <p>I help lead marketing, branding, and creative direction for the Black Business Student Association at YorkU.</p>
+    <ul>
+      <li>Create promotional content</li>
+      <li>Lead social media branding</li>
+      <li>Support high-impact events</li>
+      <li>Showcase Black excellence</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section class="section reveal" id="skills">
+  <h2>My Skills</h2>
+  <div class="card">
+    <ul>
+      <li>Marketing Strategy & Branding</li>
+      <li>Creative Direction</li>
+      <li>Social Media Management</li>
+      <li>Public Speaking</li>
+      <li>Content Creation</li>
+      <li>Leadership & Collaboration</li>
+    </ul>
+  </div>
+</section>
+
+<!-- GOALS SECTION -->
+<section class="section reveal" id="goals">
+  <h2>My Goals</h2>
+  <div class="card">
+    <p>
+      I aim to grow as a creative leader, build impactful brands, elevate my community through BBSA, and eventually create a platform that empowers young Black creators and entrepreneurs.
+    </p>
+  </div>
+</section>
+
+<!-- FUN FACTS SECTION -->
+<section class="section reveal" id="funfacts">
+  <h2>Fun Facts</h2>
+  <div class="card">
+    <ul>
+      <li>I can instantly tell if a song will be a hit.</li>
+      <li>I’m always the stylist in the friend group.</li>
+      <li>I have elite playlist-making skills.</li>
+      <li>I memorize lyrics scary fast.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FUTURE PLANS SECTION -->
+<section class="section reveal" id="future">
+  <h2>Future Plans</h2>
+  <div class="card">
+    <p>
+      I want to launch my own digital brand, work with major creative agencies, collab with artists, and eventually start a creative consulting company.
+    </p>
+  </div>
+</section>
+
+<!-- MOTTO SECTION -->
+<section class="section reveal" id="motto">
+  <h2>Life Motto</h2>
+  <div class="card">
+    <p style="font-style:italic; text-align:center; font-size:20px;">
+      "Stay real, stay hungry, stay undeniable."
+    </p>
+  </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+<section class="section reveal">
+  <h2>Follow Me</h2>
+  <div class="socials">
+    <a href="#"><img src="images/instagram-icon.png" alt="Instagram"></a>
+    <a href="#"><img src="images/tiktok-icon.png" alt="TikTok"></a>
+    <a href="#"><img src="images/snapchat-icon.png" alt="Snapchat"></a>
+    <a href="#"><img src="images/linkedin-icon.png" alt="LinkedIn"></a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <h2>Contact Me</h2>
+  <div class="card" style="text-align:center;">
+    <p>Let's connect.</p>
+    <a class="toggle" href="mailto:dennis@example.com">Send Email</a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Dennis Oteng Mensah
+</footer>
+
+  <script>
+    // Scroll reveal animation
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
